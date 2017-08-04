@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}后台管理系统{% endblock %}</title>
+
+    {% include 'headtheme.html' %}
+    {% block headcss %}
+    {% endblock %}
+
+</head>
+{% block bodyinit %}
+<body>
+{% endblock %}
+
+{% include 'navbar.html' %}
+
+<div id="sidebar-nav">
+    <ul id="dashboard-menu">
+        {% block siderbar %}
+        {% include 'base/mainsiderbar.html' %}
+
+        {% include 'base/usersiderbar.html' %}
+        {% include 'base/chartsiderbar.html' %}
+
+        {% include 'base/myinfosiderbar.html' %}
+        {% include 'base/othersiderbar.html' %}
+        {% endblock %}
+    </ul>
+</div>
+
+<div class="content">
+    <div id="pad-wrapper">
+        {% block content %}
+        这里是正文
+        {% endblock %}
+
+    </div>
+</div>
+{% block script %}
+
+{% endblock %}
+
+{% include 'bottom.html' %}
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>仿照百度搜索黑洞效果</title>
+</head>
+<style>
+    @-webkit-keyframes rotates {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+</style>
+<body>
+    <img src="blackhole.png" id="img" class="ops-blackhole" style="display: block; width: 0px; height: 0px; animation: rotates 3s linear infinite; position: fixed; z-index: 302; left: 650px; top: 350px; padding: 0px;">
+</body>
+<script>
+var img = document.getElementById('img');
+var flag = true;
+setInterval(function(){
+    var imgWidth = img.style.width;
+    var imgHeight = img.style.height;
+    var tempWidth = imgWidth.substring(0,imgWidth.length-2);
+    var tempHeight = imgWidth.substring(0,imgHeight.length-2);
+    if((flag && tempWidth < 1800) || parseInt(tempWidth) == 0 ){
+        img.style.width = (tempWidth != 0 ? parseInt(tempWidth) : 50) + Math.random()*100 + 'px';
+        img.style.height = (tempHeight != 0 ? parseInt(tempHeight) : 50) + Math.random()*100 + 'px';
+        flag = true;
+    }else{
+       img.style.width = parseInt(tempWidth) - Math.random()*10 + 'px';
+        img.style.height = parseInt(tempHeight) - Math.random()*10 + 'px';
+        flag = false;
+    }
+    //img.style.left = Math.random()*img.style.width - Math.random()*img.style.width/2 + 'px';
+    //img.style.top = Math.random()*img.style.height - Math.random()*img.style.height/2 + 'px';
+},10);
+
+</script>
+
+</html>

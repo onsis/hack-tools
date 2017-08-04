@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+
+@-webkit-keyframes rotates
+{
+0%   {-webkit-transform:rotate(0deg) scale(0)}
+30%  {-webkit-transform:rotate(180deg) scale(1)}
+50%  {-webkit-transform:rotate(280deg) scale(2.5)}
+70%  {-webkit-transform:rotate(420deg) scale(3)}
+100% {-webkit-transform:rotate(720deg) scale(0)}
+}
+@-ms-keyframes rotates{from{-ms-transform:rotate(0deg)}to{-ms-transform:rotate(360deg)}}
+@-moz-keyframes rotates{from{-moz-transform:rotate(0deg)}to{-moz-transform:rotate(360deg)}}
+@-o-keyframes rotates{from{-o-transform:rotate(0deg)}to{-o-transform:rotate(360deg)}}
+
+
+</style>
+</head>
+<body>
+<!-- https://bdaladdin.duapp.com/blackhole/ -->
+<img id="hole" src="blackhole.png" class="ops-blackhole" style="display: none; -webkit-animation: rotates 2.5s linear infinite forwards; -webkit-animation-play-state: paused; position: fixed; z-index: 302; left: 319px; top: 170.5px; padding: 0px;">
+
+
+
+<script>
+
+document.onmousedown = click
+
+function click(event)
+{
+     var e = event || window.event;
+     console.log(e.clientX+'    '+e.clientY)
+     console.log((e.clientX-400)+'    '+ (e.clientY-400))
+
+    showPanel=document.getElementById("hole");
+    if(showPanel.style.webkitAnimationPlayState=="paused"){
+         showPanel.style.left=(e.clientX-400)+"px"
+         showPanel.style.top=(e.clientY-400)+"px"
+         showPanel.style.webkitAnimationPlayState="running"
+         showPanel.style.display="block"
+
+         var timer = setInterval(function(){
+            showPanel.style.webkitAnimationPlayState="paused"
+            showPanel.style.display="none"
+            clearInterval(timer);
+            console.log("in timer")
+         },2500);
+    }
+}
+</script>
+</body>
+</html>
